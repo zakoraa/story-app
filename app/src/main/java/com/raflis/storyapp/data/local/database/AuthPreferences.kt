@@ -32,19 +32,13 @@ class AuthPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
-    fun getSession(): Flow<UserLocal> {
+    fun getUserSession(): Flow<UserLocal> {
         return dataStore.data.map { preferences ->
             UserLocal(
                 preferences[EMAIL_KEY] ?: "",
                 preferences[TOKEN_KEY] ?: "",
                 preferences[IS_LOGIN_KEY] ?: false
             )
-        }
-    }
-
-    fun getToken(): Flow<String> {
-        return dataStore.data.map {
-            it[TOKEN_KEY] ?: ""
         }
     }
 

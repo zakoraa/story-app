@@ -5,9 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.google.gson.Gson
 import com.raflis.storyapp.data.ResultStatus
+import com.raflis.storyapp.data.local.database.AuthPreferences
 import com.raflis.storyapp.data.remote.entity.Story
 import com.raflis.storyapp.data.remote.response.CreateStoryResponse
 import com.raflis.storyapp.data.remote.retrofit.StoryService
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -17,12 +20,14 @@ import java.io.File
 
 class StoryRepository private constructor(
     private val storyService: StoryService,
+    private val authPreferences: AuthPreferences
 ) {
 
     fun getAllStories(): LiveData<ResultStatus<List<Story>>> = liveData {
         emit(ResultStatus.Loading)
         try {
-            val response = storyService.getAllStories()
+            val response =
+                storyService.getAllStories()
             val stories = response.listStory
             val storyList = stories.map { story ->
                 Story(
@@ -63,10 +68,10 @@ class StoryRepository private constructor(
         @Volatile
         private var instance: StoryRepository? = null
         fun getInstance(
-            storyService: StoryService
+            storyService: StoryService, authPreferences: AuthPreferences
         ): StoryRepository =
             instance ?: synchronized(this) {
-                instance ?: StoryRepository(storyService)
+                instance ?: StoryRepository(storyService, authPreferences)
             }.also { instance = it }
     }
 }

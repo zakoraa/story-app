@@ -7,6 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeActivity">
 
+    <TextView
+        android:id="@+id/tv_greetings"
+        style="@style/TextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/screen_horizontal_margin"
+        android:layout_marginTop="10dp"
+        android:text="@string/tv_home_greetings"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:viewBindingIgnore="true" />
+
+    <TextView
+        android:id="@+id/tv_home_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_home_desc"
+        app:layout_constraintEnd_toEndOf="@id/tv_greetings"
+        app:layout_constraintStart_toStartOf="@id/tv_greetings"
+        app:layout_constraintTop_toBottomOf="@id/tv_greetings"
+        tools:viewBindingIgnore="true" />
+
     <ProgressBar
         android:id="@+id/progress_bar"
         style="?android:attr/progressBarStyle"
@@ -17,19 +40,20 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_desc"
         tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:clipToPadding="false"
         android:orientation="vertical"
-        android:paddingBottom="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingBottom="120dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_home_desc"
+        app:layout_constraintStart_toStartOf="@+id/tv_home_desc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_desc" />
 
     <TextView
         android:id="@+id/tv_no_data"
@@ -39,8 +63,8 @@
         android:text="@string/no_data"
         android:textColor="@color/grey"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_home_desc"
+        app:layout_constraintStart_toStartOf="@+id/tv_home_desc"
+        app:layout_constraintTop_toBottomOf="@+id/tv_home_desc" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

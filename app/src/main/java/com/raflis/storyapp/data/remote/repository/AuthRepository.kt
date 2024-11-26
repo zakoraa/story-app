@@ -32,7 +32,7 @@ class AuthRepository private constructor(
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, LoginResponse::class.java)
-            ResultStatus.Error(errorBody.message)
+            emit(ResultStatus.Error(errorBody.message))
         }
     }
 
@@ -49,12 +49,12 @@ class AuthRepository private constructor(
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, LoginResponse::class.java)
-            ResultStatus.Error(errorBody.message)
+            emit(ResultStatus.Error(errorBody.message))
         }
     }
 
-    fun getSession(): Flow<UserLocal> {
-        return authPreferences.getSession()
+    fun getUserSession(): Flow<UserLocal> {
+        return authPreferences.getUserSession()
     }
 
     suspend fun logout() {

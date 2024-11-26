@@ -55,7 +55,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
         <com.raflis.storyapp.ui.auth.AuthEditText
-            android:id="@+id/edt_username"
+            android:id="@+id/ed_register_name"
             android:layout_width="0dp"
             android:layout_height="@dimen/edt_height"
             android:layout_marginTop="30dp"
@@ -66,7 +66,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_desc" />
 
         <com.raflis.storyapp.ui.auth.AuthEditText
-            android:id="@+id/edt_email"
+            android:id="@+id/ed_register_email"
             android:layout_width="0dp"
             android:layout_height="@dimen/edt_height"
             android:layout_marginTop="@dimen/edt_gap"
@@ -74,10 +74,10 @@
             android:hint="@string/email"
             app:layout_constraintEnd_toEndOf="@id/tv_title"
             app:layout_constraintStart_toStartOf="@id/tv_title"
-            app:layout_constraintTop_toBottomOf="@id/edt_username" />
+            app:layout_constraintTop_toBottomOf="@id/ed_register_name" />
 
         <com.raflis.storyapp.ui.auth.AuthEditText
-            android:id="@+id/edt_pass"
+            android:id="@+id/ed_register_password"
             android:layout_width="0dp"
             android:layout_height="@dimen/edt_height"
             android:layout_marginTop="@dimen/edt_gap"
@@ -86,7 +86,7 @@
             android:inputType="textPassword"
             app:layout_constraintEnd_toEndOf="@id/tv_title"
             app:layout_constraintStart_toStartOf="@id/tv_title"
-            app:layout_constraintTop_toBottomOf="@id/edt_email" />
+            app:layout_constraintTop_toBottomOf="@id/ed_register_email" />
 
         <Button
             android:id="@+id/btn_sign_up"
@@ -97,8 +97,28 @@
             android:text="@string/sign_up"
             app:layout_constraintEnd_toEndOf="@id/tv_title"
             app:layout_constraintStart_toStartOf="@id/tv_title"
-            app:layout_constraintTop_toBottomOf="@id/edt_pass" />
+            app:layout_constraintTop_toBottomOf="@id/ed_register_password" />
 
+        <View
+            android:id="@+id/base_btn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginTop="@dimen/edt_gap"
+            app:layout_constraintEnd_toEndOf="@id/tv_title"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/ed_register_password" />
+
+        <Button
+            android:id="@+id/btn_loading"
+            style="@style/TextOnButton"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginTop="@dimen/edt_gap"
+            android:text="@string/loading"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/tv_title"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/ed_register_password" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -108,7 +128,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_sign_up">
+            app:layout_constraintTop_toBottomOf="@id/base_btn">
 
             <TextView
                 android:layout_width="wrap_content"

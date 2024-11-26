@@ -10,11 +10,11 @@ import retrofit2.http.POST
 import retrofit2.http.Part
 
 interface StoryService {
-    @GET("/stories")
+    @GET("stories")
     suspend fun getAllStories(): GetAllStoriesResponse
 
     @Multipart
-    @POST("/stories")
+    @POST("stories")
     suspend fun createStory(
         @Part imageFile: MultipartBody.Part,
         @Part("description") description: RequestBody,

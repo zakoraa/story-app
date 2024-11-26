@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.raflis.storyapp.R
 import com.raflis.storyapp.data.remote.entity.Story
 import com.raflis.storyapp.databinding.StoryCardItemBinding
+import com.raflis.storyapp.utils.DateUtil
 
 class StoryAdapter(private val listStories: List<Story>) :
     RecyclerView.Adapter<StoryAdapter.ListViewHolder>() {
@@ -34,7 +35,7 @@ class StoryAdapter(private val listStories: List<Story>) :
                     .into(ivStoryImage)
                 tvStoryName.text = story.name
                 tvStoryDesc.text = story.description
-                tvStoryTime.text = story.createdAt
+                tvStoryTime.text = DateUtil.formatToLocalizedDate(story.createdAt)
             }
 
         }

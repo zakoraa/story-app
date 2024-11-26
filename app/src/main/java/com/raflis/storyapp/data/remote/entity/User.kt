@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 data class User(
 
     @field:SerializedName("name")
-    val name: String,
+    val name: String = "",
 
     @field:SerializedName("email")
     val email: String,
