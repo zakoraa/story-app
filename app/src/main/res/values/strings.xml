@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Story App</string>
+    <string name="login_title">Welcome Back!</string>
+    <string name="login_desc">Login to access your personalized experience.</string>
+
+    <string name="sign_up_title">Let\'s get you started!</string>
+    <string name="sign_up_desc">Sign up to start your personalized journey.</string>
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+
+    <string name="error_empty_field">%s must not be empty</string>
+    <string name="error_min_length_field">%s cannot be less than %d characters</string>
+    <string name="login">Login</string>
+    <string name="already_have_an_account">Already have an account? </string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account yet? </string>
+    <string name="sign_up">Sign Up</string>
+
+</resources>
