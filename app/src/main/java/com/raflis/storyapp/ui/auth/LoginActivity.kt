@@ -15,6 +15,10 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initAction()
+    }
+
+    private fun initAction() {
         with(binding) {
             edtEmail.setInputName(getString(R.string.email))
             edtPass.setInputName(getString(R.string.password))

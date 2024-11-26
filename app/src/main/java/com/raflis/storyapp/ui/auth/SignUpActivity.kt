@@ -13,12 +13,15 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        initAction()
+    }
+
+    private fun initAction() {
         with(binding) {
             edtUsername.setInputName(getString(R.string.username))
             edtEmail.setInputName(getString(R.string.email))
             edtPass.setInputName(getString(R.string.password))
-
-            tvBackToLogin.setOnClickListener{
+            tvBackToLogin.setOnClickListener {
                 finish()
             }
         }

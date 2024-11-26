@@ -16,7 +16,7 @@ interface StoryService {
     @Multipart
     @POST("/stories")
     suspend fun createStory(
-        @Part file: MultipartBody.Part,
+        @Part imageFile: MultipartBody.Part,
         @Part("description") description: RequestBody,
     ): CreateStoryResponse
 }

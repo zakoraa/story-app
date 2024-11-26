@@ -17,8 +17,8 @@ interface AuthService {
 
     @FormUrlEncoded
     @POST("/login")
-    suspend fun signUp(
-        @Field("name") name: String,
+    suspend fun login(
         @Field("email") email: String,
+        @Field("password") password: String,
     ): LoginResponse
 }

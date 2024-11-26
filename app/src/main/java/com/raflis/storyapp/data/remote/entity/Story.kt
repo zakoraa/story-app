@@ -3,17 +3,23 @@ package com.raflis.storyapp.data.remote.entity
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
-import java.io.File
 
 @Parcelize
 data class Story(
 
+    @field:SerializedName("photoUrl")
+    val photoUrl: String,
+
+    @field:SerializedName("createdAt")
+    val createdAt: String,
+
+    @field:SerializedName("name")
+    val name: String,
+
     @field:SerializedName("description")
-    val description: String? = null,
+    val description: String,
 
-    @field:SerializedName("photo")
-    val photo: File? = null,
+    @field:SerializedName("id")
+    val id: String,
 
-    @field:SerializedName("password")
-    val password: String? = null
 ) : Parcelable

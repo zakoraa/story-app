@@ -1,22 +1,27 @@
 package com.raflis.storyapp.data.local.database
 
 
+import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import com.raflis.storyapp.data.local.entity.UserLocal
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "auth")
 
 class AuthPreferences private constructor(private val dataStore: DataStore<Preferences>) {
 
     companion object {
         @Volatile
         private var INSTANCE: AuthPreferences? = null
-
-        private val LOGIN_STATUS_KEY = booleanPreferencesKey("login_status")
+        private val EMAIL_KEY = stringPreferencesKey("email")
         private val TOKEN_KEY = stringPreferencesKey("token")
+        private val IS_LOGIN_KEY = booleanPreferencesKey("isLogin")
 
         fun getInstance(dataStore: DataStore<Preferences>): AuthPreferences {
             return INSTANCE ?: synchronized(this) {
@@ -27,27 +32,34 @@ class AuthPreferences private constructor(private val dataStore: DataStore<Prefe
         }
     }
 
-    val isLoggedIn: Flow<Boolean> = dataStore.data.map { preferences ->
-        preferences[LOGIN_STATUS_KEY] ?: false
-    }
-
-    val token: Flow<String?> = dataStore.data.map { preferences ->
-        preferences[TOKEN_KEY]
-    }
-
-    suspend fun saveSession(isLoggedIn: Boolean, token: String?) {
-        dataStore.edit { preferences ->
-            preferences[LOGIN_STATUS_KEY] = isLoggedIn
-            token?.let {
-                preferences[TOKEN_KEY] = it
-            }
+    fun getSession(): Flow<UserLocal> {
+        return dataStore.data.map { preferences ->
+            UserLocal(
+                preferences[EMAIL_KEY] ?: "",
+                preferences[TOKEN_KEY] ?: "",
+                preferences[IS_LOGIN_KEY] ?: false
+            )
         }
     }
 
-    suspend fun clearSession() {
+    fun getToken(): Flow<String> {
+        return dataStore.data.map {
+            it[TOKEN_KEY] ?: ""
+        }
+    }
+
+    suspend fun saveSession(user: UserLocal) {
         dataStore.edit { preferences ->
-            preferences[LOGIN_STATUS_KEY] = false
-            preferences.remove(TOKEN_KEY)
+            preferences[EMAIL_KEY] = user.email
+            preferences[TOKEN_KEY] = user.token
+            preferences[IS_LOGIN_KEY] = true
+        }
+    }
+
+
+    suspend fun logout() {
+        dataStore.edit { preferences ->
+            preferences.clear()
         }
     }
 }
