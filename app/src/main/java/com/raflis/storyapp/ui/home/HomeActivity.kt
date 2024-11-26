@@ -50,6 +50,11 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        getAllStories()
+    }
+
     private fun logout() {
         with(binding) {
             ivLogout.setOnClickListener {

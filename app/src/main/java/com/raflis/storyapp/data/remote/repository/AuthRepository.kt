@@ -8,6 +8,7 @@ import com.raflis.storyapp.data.local.entity.UserLocal
 import com.raflis.storyapp.data.remote.entity.User
 import com.raflis.storyapp.data.remote.response.LoginResponse
 import com.raflis.storyapp.data.remote.retrofit.AuthService
+import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
 
 class AuthRepository private constructor(
@@ -54,6 +55,10 @@ class AuthRepository private constructor(
 
     suspend fun logout() {
         authPreferences.logout()
+    }
+
+    fun getSession(): Flow<UserLocal> {
+        return authPreferences.getUserSession()
     }
 
     companion object {

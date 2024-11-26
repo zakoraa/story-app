@@ -17,6 +17,7 @@ import com.raflis.storyapp.data.ResultStatus
 import com.raflis.storyapp.databinding.ActivityCreateStoryBinding
 import com.raflis.storyapp.ui.home.HomeActivity
 import com.raflis.storyapp.utils.FileConverterUtil.getImageUri
+import com.raflis.storyapp.utils.FileConverterUtil.reduceFileImage
 import com.raflis.storyapp.utils.FileConverterUtil.uriToFile
 import com.raflis.storyapp.viewModel.ViewModelFactory
 import com.raflis.storyapp.viewModel.story.StoryViewModel
@@ -122,7 +123,7 @@ class CreateStoryActivity : AppCompatActivity() {
             currentImageUri = uri
             currentImageUri.let {
                 if (it != null) {
-                    file = uriToFile(it, this)
+                    file = uriToFile(it, this).reduceFileImage()
                 }
             }
             showImage()
@@ -140,7 +141,7 @@ class CreateStoryActivity : AppCompatActivity() {
         if (isSuccess) {
             currentImageUri.let {
                 if (it != null) {
-                    file = uriToFile(it, this)
+                    file = uriToFile(it, this).reduceFileImage()
                 }
             }
             showImage()
