@@ -8,7 +8,6 @@ import com.raflis.storyapp.data.local.entity.UserLocal
 import com.raflis.storyapp.data.remote.entity.User
 import com.raflis.storyapp.data.remote.response.LoginResponse
 import com.raflis.storyapp.data.remote.retrofit.AuthService
-import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
 
 class AuthRepository private constructor(
@@ -51,10 +50,6 @@ class AuthRepository private constructor(
             val errorBody = Gson().fromJson(jsonInString, LoginResponse::class.java)
             emit(ResultStatus.Error(errorBody.message))
         }
-    }
-
-    fun getUserSession(): Flow<UserLocal> {
-        return authPreferences.getUserSession()
     }
 
     suspend fun logout() {

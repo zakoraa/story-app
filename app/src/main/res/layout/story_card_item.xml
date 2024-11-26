@@ -20,6 +20,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/story_image_desc"
             android:scaleType="centerCrop"
+            android:transitionName="image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
+            android:transitionName="name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_story_image" />
@@ -41,6 +43,7 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
             android:textStyle="normal"
+            android:transitionName="description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_story_name"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +55,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
+            android:transitionName="time"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_story_desc"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.story_detail.StoryDetailActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_radius"
+            android:backgroundTint="@color/primary"
+            android:contentDescription="@string/back_btn_story_details_desc"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/TextTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/story_details"
+            app:layout_constraintBottom_toBottomOf="@id/ib_back"
+            app:layout_constraintEnd_toStartOf="@id/view"
+            app:layout_constraintStart_toEndOf="@id/ib_back"
+            app:layout_constraintTop_toTopOf="@id/ib_back" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ib_back" />
+
+        <ImageView
+            android:id="@+id/iv_story_image"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:layout_marginVertical="8dp"
+            android:background="@drawable/border_radius"
+            android:contentDescription="@string/story_image_desc"
+            android:padding="5dp"
+            app:layout_constraintEnd_toEndOf="@id/view"
+            app:layout_constraintStart_toStartOf="@id/ib_back"
+            app:layout_constraintTop_toBottomOf="@id/ib_back"
+            app:srcCompat="@drawable/ic_placeholder" />
+
+        <TextView
+            android:id="@+id/tv_story_name"
+            style="@style/TextHeading1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/ib_back"
+            app:layout_constraintTop_toBottomOf="@id/iv_story_image" />
+
+        <TextView
+            android:id="@+id/tv_story_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@id/ib_back"
+            app:layout_constraintTop_toBottomOf="@id/tv_story_name" />
+
+        <TextView
+            android:id="@+id/tv_story_time"
+            style="@style/TextPlaceholder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_story_desc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

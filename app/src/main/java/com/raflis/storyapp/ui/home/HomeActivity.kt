@@ -1,5 +1,6 @@
 package com.raflis.storyapp.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -12,15 +13,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.raflis.storyapp.R
 import com.raflis.storyapp.data.ResultStatus
 import com.raflis.storyapp.databinding.ActivityHomeBinding
+import com.raflis.storyapp.ui.auth.LoginActivity
 import com.raflis.storyapp.viewModel.ViewModelFactory
+import com.raflis.storyapp.viewModel.auth.AuthViewModel
 import com.raflis.storyapp.viewModel.story.StoryViewModel
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
-    private val viewModel: StoryViewModel by viewModels {
+    private val storyViewModel: StoryViewModel by viewModels {
         factory
     }
+    private val authViewModel: AuthViewModel by viewModels {
+        factory
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +41,26 @@ class HomeActivity : AppCompatActivity() {
         }
 
         getAllStories()
+        logout()
+    }
+
+
+    private fun logout() {
+        with(binding) {
+            ivLogout.setOnClickListener {
+                authViewModel.logout()
+                val intent =
+                    Intent(this@HomeActivity, LoginActivity::class.java).apply {
+                        flags =
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    }
+                startActivity(intent)
+            }
+        }
     }
 
     private fun getAllStories() {
-        viewModel.getAllStories().observe(this) { result ->
+        storyViewModel.getAllStories().observe(this) { result ->
             with(binding) {
                 if (result != null) {
                     when (result) {
