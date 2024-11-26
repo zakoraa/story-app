@@ -23,6 +23,7 @@
 
     <string name="login_success">Login Success</string>
     <string name="sign_up_success">Sign Up Success</string>
+    <string name="create_story_success">Create Story Success</string>
 
     <string name="error_wrong_input">Your email or password is wrong. Try Again!</string>
     <string name="error_something_wrong">Something wrong. Try Again!</string>
@@ -35,7 +36,11 @@
     <string name="log_out_desc">Log out of account</string>
     <string name="story_details">Story Details</string>
     <string name="back_btn_story_details_desc">Return from story details page</string>
-    <string name="description">Description:</string>
+    <string name="description">Description</string>
+    <string name="gallery">Gallery</string>
+    <string name="camera">Camera</string>
+    <string name="create_story">Create Story</string>
+    <string name="create">Create</string>
 
 
 </resources>

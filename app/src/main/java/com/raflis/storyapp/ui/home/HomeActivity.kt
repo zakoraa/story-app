@@ -14,6 +14,7 @@ import com.raflis.storyapp.R
 import com.raflis.storyapp.data.ResultStatus
 import com.raflis.storyapp.databinding.ActivityHomeBinding
 import com.raflis.storyapp.ui.auth.LoginActivity
+import com.raflis.storyapp.ui.create_story.CreateStoryActivity
 import com.raflis.storyapp.viewModel.ViewModelFactory
 import com.raflis.storyapp.viewModel.auth.AuthViewModel
 import com.raflis.storyapp.viewModel.story.StoryViewModel
@@ -42,8 +43,12 @@ class HomeActivity : AppCompatActivity() {
 
         getAllStories()
         logout()
-    }
 
+        binding.floatBtnCreateStory.setOnClickListener {
+            val intent = Intent(this@HomeActivity, CreateStoryActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
     private fun logout() {
         with(binding) {
