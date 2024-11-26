@@ -25,12 +25,6 @@
     <string name="sign_up_success">Sign Up Success</string>
     <string name="create_story_success">Create Story Success</string>
 
-    <string name="error_wrong_input">Your email or password is wrong. Try Again!</string>
-    <string name="error_something_wrong">Something wrong. Try Again!</string>
-    <string name="error_wrong_email_format">Invalid email format</string>
-    <string name="error_min_length_field">%s cannot be less than %d characters</string>
-    <string name="error_empty_field">%s must not be empty</string>
-    <string name="error_occurs">Error Occurs</string>
     <string name="loading">Loading</string>
     <string name="floating_btn_desc">Creating your story</string>
     <string name="log_out_desc">Log out of account</string>
@@ -42,5 +36,12 @@
     <string name="create_story">Create Story</string>
     <string name="create">Create</string>
 
-
+    <string name="error_story_desc_empty">Please fill in the description first!</string>
+    <string name="error_story_image_empty">Please select a picture first!</string>
+    <string name="error_wrong_input">Your email or password is wrong. Try Again!</string>
+    <string name="error_something_wrong">Something wrong. Try Again!</string>
+    <string name="error_wrong_email_format">Invalid email format</string>
+    <string name="error_min_length_field">%s cannot be less than %d characters</string>
+    <string name="error_empty_field">%s must not be empty</string>
+    <string name="error_occurs">Error Occurs</string>
 </resources>

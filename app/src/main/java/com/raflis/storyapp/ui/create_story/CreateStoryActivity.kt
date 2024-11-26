@@ -55,7 +55,11 @@ class CreateStoryActivity : AppCompatActivity() {
                 startGallery()
             }
             btnCreateStory.setOnClickListener {
-                createStory()
+                if (edtDesc.text.toString().isEmpty()) {
+                    showToast(getString(R.string.error_story_desc_empty))
+                } else {
+                    createStory()
+                }
             }
             ibBack.setOnClickListener {
                 finish()
@@ -77,6 +81,7 @@ class CreateStoryActivity : AppCompatActivity() {
                                     btnLoading.visibility = View.VISIBLE
                                     btnGallery.isClickable = false
                                     btnCamera.isClickable = false
+                                    ibBack.isClickable = false
                                 }
 
                                 is ResultStatus.Success -> {
@@ -98,6 +103,8 @@ class CreateStoryActivity : AppCompatActivity() {
                             }
                         }
                     }
+            } else {
+                showToast(getString(R.string.error_story_image_empty))
             }
         }
     }
@@ -109,6 +116,7 @@ class CreateStoryActivity : AppCompatActivity() {
             btnLoading.visibility = View.GONE
             btnGallery.isClickable = true
             btnCamera.isClickable = true
+            ibBack.isClickable = true
         }
     }
 
