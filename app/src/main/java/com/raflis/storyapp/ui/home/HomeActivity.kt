@@ -34,15 +34,18 @@ class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         factory = ViewModelFactory.getInstance(this)
         initView()
     }
 
     override fun onResume() {
         super.onResume()
-
-        getAllStories()
-
+        authViewModel.getSession().observe(this) { user ->
+            if (user.isLogin) {
+                getAllStories()
+            }
+        }
     }
 
     private fun initView() {
@@ -56,7 +59,6 @@ class HomeActivity : AppCompatActivity() {
                 finish()
             } else {
                 enableEdgeToEdge()
-                setContentView(binding.root)
                 ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
                     val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
                     v.setPadding(
