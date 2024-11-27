@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Story App</string>
+    <string name="login_title">Selamat Datang Kembali!</string>
+    <string name="login_desc">Masuk untuk mengakses pengalaman pribadi Anda.</string>
+
+    <string name="sign_up_title">Mari mulai perjalanan Anda!</string>
+    <string name="sign_up_desc">Daftar untuk memulai perjalanan pribadi Anda.</string>
+
+    <string name="email">Email</string>
+    <string name="password">Kata Sandi</string>
+    <string name="username">Nama Pengguna</string>
+
+    <string name="login">Masuk</string>
+    <string name="already_have_an_account">Sudah memiliki akun? </string>
+    <string name="don_t_have_an_account_yet">Belum memiliki akun? </string>
+    <string name="sign_up">Daftar</string>
+
+    <string name="story_image_desc">menampilkan gambar cerita</string>
+    <string name="no_data">Tidak Ada Data</string>
+
+    <string name="tv_home_greetings">Halo Semesta!</string>
+    <string name="tv_home_desc">Cerita Anda, inspirasi bagi orang lain.</string>
+
+    <string name="login_success">Berhasil Masuk</string>
+    <string name="sign_up_success">Berhasil Daftar</string>
+    <string name="create_story_success">Berhasil Membuat Cerita</string>
+
+    <string name="loading">Memuat</string>
+    <string name="floating_btn_desc">Membuat cerita Anda</string>
+    <string name="log_out_desc">Keluar dari akun</string>
+    <string name="logout">Keluar</string>
+    <string name="select_language">Pilih Bahasa</string>
+    <string name="story_details">Detail Cerita</string>
+    <string name="back_btn_story_details_desc">Kembali dari halaman detail cerita</string>
+    <string name="description">Deskripsi</string>
+    <string name="gallery">Galeri</string>
+    <string name="camera">Kamera</string>
+    <string name="create_story">Buat Cerita</string>
+    <string name="create">Buat</string>
+
+    <string name="error_story_desc_empty">Harap isi deskripsi terlebih dahulu!</string>
+    <string name="error_story_image_empty">Harap pilih gambar terlebih dahulu!</string>
+    <string name="error_wrong_input">Email atau kata sandi Anda salah. Coba lagi!</string>
+    <string name="error_something_wrong">Terjadi kesalahan. Coba lagi!</string>
+    <string name="error_wrong_email_format">Format email tidak valid</string>
+    <string name="error_min_length_field">%s tidak boleh kurang dari %d karakter</string>
+    <string name="error_empty_field">%s tidak boleh kosong</string>
+    <string name="error_occurs">Terjadi Kesalahan</string>
+    <string name="error_expired_session">sesi anda habis, harap login kembali!</string>
+
+</resources>

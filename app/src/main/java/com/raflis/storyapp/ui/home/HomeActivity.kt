@@ -2,10 +2,13 @@ package com.raflis.storyapp.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -21,7 +24,7 @@ import com.raflis.storyapp.viewModel.story.StoryViewModel
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
-    private val factory: ViewModelFactory = ViewModelFactory.getInstance(this)
+    private lateinit var factory: ViewModelFactory
     private val storyViewModel: StoryViewModel by viewModels {
         factory
     }
@@ -29,45 +32,90 @@ class HomeActivity : AppCompatActivity() {
         factory
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        getAllStories()
-        logout()
-
-        binding.floatBtnCreateStory.setOnClickListener {
-            val intent = Intent(this@HomeActivity, CreateStoryActivity::class.java)
-            startActivity(intent)
-        }
+        factory = ViewModelFactory.getInstance(this)
+        initView()
     }
 
     override fun onResume() {
         super.onResume()
-        getAllStories()
-    }
-
-    private fun logout() {
-        with(binding) {
-            ivLogout.setOnClickListener {
-                authViewModel.logout()
-                val intent =
-                    Intent(this@HomeActivity, LoginActivity::class.java).apply {
-                        flags =
-                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    }
-                startActivity(intent)
+        authViewModel.getSession().observe(this) { user ->
+            Log.d("USERRR: ", user.toString())
+            if (user.isLogin) {
+                getAllStories()
             }
         }
     }
+
+    private fun initView() {
+        authViewModel.getSession().observe(this) { user ->
+            if (!user.isLogin) {
+                val intent = Intent(this, LoginActivity::class.java).apply {
+                    flags =
+                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
+                finish()
+                return@observe
+            } else {
+                enableEdgeToEdge()
+                setContentView(binding.root)
+                ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+                    val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                    v.setPadding(
+                        systemBars.left,
+                        systemBars.top,
+                        systemBars.right,
+                        systemBars.bottom
+                    )
+                    insets
+                }
+
+                getAllStories()
+                handleSettings()
+
+                binding.floatBtnCreateStory.setOnClickListener {
+                    val intent = Intent(this@HomeActivity, CreateStoryActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }
+    }
+
+    private fun handleSettings() {
+        with(binding) {
+            ivSettings.setOnClickListener {
+                val options =
+                    arrayOf(getString(R.string.select_language), getString(R.string.log_out_desc))
+                val builder = AlertDialog.Builder(this@HomeActivity)
+                builder.setItems(options) { _, which ->
+                    when (which) {
+                        0 -> {
+                            startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
+                        }
+
+                        1 -> {
+                            logout()
+                        }
+                    }
+                }
+                builder.show()
+            }
+        }
+    }
+
+    private fun logout() {
+        authViewModel.logout()
+        val intent =
+            Intent(this@HomeActivity, LoginActivity::class.java).apply {
+                flags =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+        startActivity(intent)
+    }
+
 
     private fun getAllStories() {
         storyViewModel.getAllStories().observe(this) { result ->
@@ -96,7 +144,7 @@ class HomeActivity : AppCompatActivity() {
                             progressBar.visibility = View.GONE
                             Toast.makeText(
                                 this@HomeActivity,
-                                getString(R.string.error_occurs) + result.error,
+                                getString(R.string.error_expired_session),
                                 Toast.LENGTH_SHORT
                             ).show()
                         }

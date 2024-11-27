@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Story App</string>
+    <string name="login_title">¡Bienvenido de nuevo!</string>
+    <string name="login_desc">Inicia sesión para acceder a tu experiencia personalizada.</string>
+
+    <string name="sign_up_title">¡Vamos a empezar tu viaje!</string>
+    <string name="sign_up_desc">Regístrate para comenzar tu viaje personalizado.</string>
+
+    <string name="email">Correo Electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="username">Nombre de Usuario</string>
+
+    <string name="login">Iniciar Sesión</string>
+    <string name="already_have_an_account">¿Ya tienes una cuenta? </string>
+    <string name="don_t_have_an_account_yet">¿Aún no tienes una cuenta? </string>
+    <string name="sign_up">Registrarse</string>
+
+    <string name="story_image_desc">mostrar la imagen de la historia</string>
+    <string name="no_data">Sin Datos</string>
+
+    <string name="tv_home_greetings">¡Hola Universo!</string>
+    <string name="tv_home_desc">Tus historias, una inspiración para otros.</string>
+
+    <string name="login_success">Inicio de Sesión Exitoso</string>
+    <string name="sign_up_success">Registro Exitoso</string>
+    <string name="create_story_success">Historia Creada Exitosamente</string>
+
+    <string name="loading">Cargando</string>
+    <string name="floating_btn_desc">Creando tu historia</string>
+    <string name="log_out_desc">Cerrar sesión de la cuenta</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="select_language">Seleccionar Idioma</string>
+    <string name="story_details">Detalles de la Historia</string>
+    <string name="back_btn_story_details_desc">Volver de la página de detalles de la historia</string>
+    <string name="description">Descripción</string>
+    <string name="gallery">Galería</string>
+    <string name="camera">Cámara</string>
+    <string name="create_story">Crear Historia</string>
+    <string name="create">Crear</string>
+
+    <string name="error_story_desc_empty">¡Por favor, rellena primero la descripción!</string>
+    <string name="error_story_image_empty">¡Por favor, selecciona una imagen primero!</string>
+    <string name="error_wrong_input">Tu correo electrónico o contraseña son incorrectos. ¡Intenta nuevamente!</string>
+    <string name="error_something_wrong">Algo salió mal. ¡Intenta nuevamente!</string>
+    <string name="error_wrong_email_format">Formato de correo electrónico no válido</string>
+    <string name="error_min_length_field">%s no puede tener menos de %d caracteres</string>
+    <string name="error_empty_field">%s no puede estar vacío</string>
+    <string name="error_occurs">Se produjo un Error</string>
+    <string name="error_expired_session">Su sesión ha caducado, por favor, inicie sesión de nuevo!</string>
+</resources>

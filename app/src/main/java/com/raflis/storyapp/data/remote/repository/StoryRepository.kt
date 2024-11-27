@@ -5,12 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.google.gson.Gson
 import com.raflis.storyapp.data.ResultStatus
-import com.raflis.storyapp.data.local.database.AuthPreferences
 import com.raflis.storyapp.data.remote.entity.Story
 import com.raflis.storyapp.data.remote.response.CreateStoryResponse
 import com.raflis.storyapp.data.remote.retrofit.StoryService
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -20,7 +17,6 @@ import java.io.File
 
 class StoryRepository private constructor(
     private val storyService: StoryService,
-    private val authPreferences: AuthPreferences
 ) {
 
     fun getAllStories(): LiveData<ResultStatus<List<Story>>> = liveData {
@@ -68,10 +64,10 @@ class StoryRepository private constructor(
         @Volatile
         private var instance: StoryRepository? = null
         fun getInstance(
-            storyService: StoryService, authPreferences: AuthPreferences
+            storyService: StoryService
         ): StoryRepository =
             instance ?: synchronized(this) {
-                instance ?: StoryRepository(storyService, authPreferences)
+                instance ?: StoryRepository(storyService)
             }.also { instance = it }
     }
 }

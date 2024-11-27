@@ -31,12 +31,12 @@
         tools:viewBindingIgnore="true" />
 
     <ImageView
-        android:id="@+id/iv_logout"
+        android:id="@+id/iv_settings"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="@dimen/screen_horizontal_margin"
         android:contentDescription="@string/log_out_desc"
-        android:src="@drawable/ic_logout"
+        android:src="@drawable/ic_settings"
         app:layout_constraintBottom_toBottomOf="@id/tv_home_desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv_greetings" />

@@ -27,7 +27,9 @@
 
     <string name="loading">Loading</string>
     <string name="floating_btn_desc">Creating your story</string>
-    <string name="log_out_desc">Log out of account</string>
+    <string name="log_out_desc">Logout of account</string>
+    <string name="logout">Logout</string>
+    <string name="select_language">Select Language</string>
     <string name="story_details">Story Details</string>
     <string name="back_btn_story_details_desc">Return from story details page</string>
     <string name="description">Description</string>
@@ -44,4 +46,5 @@
     <string name="error_min_length_field">%s cannot be less than %d characters</string>
     <string name="error_empty_field">%s must not be empty</string>
     <string name="error_occurs">Error Occurs</string>
+    <string name="error_expired_session">Your session expired, please login again!</string>
 </resources>
