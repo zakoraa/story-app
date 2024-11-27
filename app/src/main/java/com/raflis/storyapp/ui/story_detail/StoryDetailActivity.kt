@@ -46,11 +46,11 @@ class StoryDetailActivity : AppCompatActivity() {
             Glide.with(this)
                 .load(it.photoUrl)
                 .placeholder(R.drawable.ic_placeholder)
-                .into(binding.ivStoryImage)
+                .into(binding.ivDetailPhoto)
             with(binding) {
-                tvStoryName.text = it.name
+                tvDetailName.text = it.name
                 tvStoryTime.text = DateUtil.formatToLocalizedDate(it.createdAt)
-                tvStoryDesc.text = it.description
+                tvDetailDescription.text = it.description
             }
         } ?: run {
             Toast.makeText(this, "Story data is missing", Toast.LENGTH_SHORT).show()

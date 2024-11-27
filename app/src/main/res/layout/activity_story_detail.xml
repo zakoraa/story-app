@@ -43,7 +43,7 @@
             app:layout_constraintTop_toTopOf="@id/ib_back" />
 
         <ImageView
-            android:id="@+id/iv_story_image"
+            android:id="@+id/iv_detail_photo"
             android:layout_width="0dp"
             android:layout_height="300dp"
             android:layout_marginVertical="8dp"
@@ -56,7 +56,7 @@
             app:srcCompat="@drawable/ic_placeholder" />
 
         <TextView
-            android:id="@+id/tv_story_name"
+            android:id="@+id/tv_detail_name"
             style="@style/TextHeading1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -64,16 +64,16 @@
             android:layout_marginTop="10dp"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="@id/ib_back"
-            app:layout_constraintTop_toBottomOf="@id/iv_story_image" />
+            app:layout_constraintTop_toBottomOf="@id/iv_detail_photo" />
 
         <TextView
-            android:id="@+id/tv_story_desc"
+            android:id="@+id/tv_detail_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="@id/ib_back"
-            app:layout_constraintTop_toBottomOf="@id/tv_story_name" />
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_name" />
 
         <TextView
             android:id="@+id/tv_story_time"
@@ -83,7 +83,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_story_desc" />
+            app:layout_constraintTop_toBottomOf="@id/tv_detail_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

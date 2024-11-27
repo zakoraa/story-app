@@ -14,7 +14,7 @@
         android:paddingBottom="10dp">
 
         <ImageView
-            android:id="@+id/iv_story_image"
+            android:id="@+id/iv_item_photo"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:adjustViewBounds="true"
@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_story_name"
+            android:id="@+id/tv_item_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
@@ -33,7 +33,7 @@
             android:transitionName="name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_story_image" />
+            app:layout_constraintTop_toBottomOf="@id/iv_item_photo" />
 
         <TextView
             android:id="@+id/tv_story_desc"
@@ -45,9 +45,9 @@
             android:textStyle="normal"
             android:transitionName="description"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_story_name"
+            app:layout_constraintStart_toEndOf="@id/tv_item_name"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_story_name" />
+            app:layout_constraintTop_toBottomOf="@id/tv_item_name" />
 
         <TextView
             android:id="@+id/tv_story_time"

@@ -42,8 +42,8 @@ class StoryAdapter(private val listStories: List<Story>) :
                 Glide.with(itemView.context)
                     .load(story.photoUrl)
                     .placeholder(R.drawable.ic_placeholder)
-                    .into(ivStoryImage)
-                tvStoryName.text = story.name
+                    .into(ivItemPhoto)
+                tvItemName.text = story.name
                 tvStoryDesc.text = story.description
                 tvStoryTime.text = DateUtil.formatToLocalizedDate(story.createdAt)
 
@@ -55,8 +55,8 @@ class StoryAdapter(private val listStories: List<Story>) :
                     val optionsCompat: ActivityOptionsCompat =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(
                             context as Activity,
-                            Pair(ivStoryImage, "image"),
-                            Pair(tvStoryName, "name"),
+                            Pair(ivItemPhoto, "image"),
+                            Pair(tvItemName, "name"),
                             Pair(tvStoryDesc, "description"),
                             Pair(tvStoryTime, "time"),
                         )

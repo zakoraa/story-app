@@ -3,7 +3,6 @@ package com.raflis.storyapp.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -41,12 +40,9 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        authViewModel.getSession().observe(this) { user ->
-            Log.d("USERRR: ", user.toString())
-            if (user.isLogin) {
-                getAllStories()
-            }
-        }
+
+        getAllStories()
+
     }
 
     private fun initView() {
@@ -58,7 +54,6 @@ class HomeActivity : AppCompatActivity() {
                 }
                 startActivity(intent)
                 finish()
-                return@observe
             } else {
                 enableEdgeToEdge()
                 setContentView(binding.root)
@@ -73,13 +68,14 @@ class HomeActivity : AppCompatActivity() {
                     insets
                 }
 
-                getAllStories()
                 handleSettings()
 
                 binding.floatBtnCreateStory.setOnClickListener {
                     val intent = Intent(this@HomeActivity, CreateStoryActivity::class.java)
                     startActivity(intent)
                 }
+                getAllStories()
+
             }
         }
     }
