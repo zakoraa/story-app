@@ -8,7 +8,7 @@ class StoryViewModel(private val storyRepository: StoryRepository) : ViewModel()
 
     fun getAllStories() = storyRepository.getAllStories()
 
-    fun createStory(imageFile: File, description: String) =
-        storyRepository.createStory(imageFile, description)
+    fun createStory(imageFile: File, description: String, lat: Double?, lon: Double?) =
+        storyRepository.createStory(imageFile, description, lat, lon)
 
 }

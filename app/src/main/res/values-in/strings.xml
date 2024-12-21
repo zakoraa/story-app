@@ -51,5 +51,7 @@
     <string name="error_empty_field">%s tidak boleh kosong</string>
     <string name="error_occurs">Terjadi Kesalahan</string>
     <string name="error_expired_session">sesi anda habis, harap login kembali!</string>
+    <string name="added_location_success">Lokasi untuk cerita ditambahkan</string>
+    <string name="location_not_found">Lokasi tidak ditemukan atau non-aktif. Mohon aktifkan lokasi Anda!</string>
 
 </resources>

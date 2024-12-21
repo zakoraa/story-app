@@ -1,6 +1,8 @@
 package com.raflis.storyapp.ui.create_story
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -10,8 +12,11 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.raflis.storyapp.R
 import com.raflis.storyapp.data.ResultStatus
 import com.raflis.storyapp.databinding.ActivityCreateStoryBinding
@@ -31,6 +36,9 @@ class CreateStoryActivity : AppCompatActivity() {
     }
     private var currentImageUri: Uri? = null
     private var file: File? = null
+    private var lat: Double? = null
+    private var lon: Double? = null
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,12 +50,21 @@ class CreateStoryActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         initAction()
     }
 
     private fun initAction() {
         with(binding) {
+            switchActiveLocation.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    getCurrentLocation()
+                } else {
+                    lat = null
+                    lon = null
+                }
+            }
             btnCamera.setOnClickListener {
                 startCamera()
             }
@@ -71,7 +88,7 @@ class CreateStoryActivity : AppCompatActivity() {
         with(binding) {
             val description = edtDesc.text.toString()
             if (file != null) {
-                viewModel.createStory(file!!, description)
+                viewModel.createStory(file!!, description, lat, lon)
                     .observe(this@CreateStoryActivity) { result ->
                         if (result != null) {
                             when (result) {
@@ -153,6 +170,35 @@ class CreateStoryActivity : AppCompatActivity() {
                 }
             }
             showImage()
+        }
+    }
+
+    private fun getCurrentLocation() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationProviderClient.lastLocation
+                .addOnSuccessListener { loc ->
+                    if (loc != null) {
+                        lat = loc.latitude
+                        lon = loc.longitude
+                        showToast(getString(R.string.added_location_success))
+                    } else {
+                        showToast(getString(R.string.location_not_found))
+                    }
+                }
+        } else {
+            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+    }
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted: Boolean ->
+        if (isGranted) {
+            getCurrentLocation()
         }
     }
 

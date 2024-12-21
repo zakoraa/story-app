@@ -51,4 +51,6 @@
     <string name="error_empty_field">%s no puede estar vacío</string>
     <string name="error_occurs">Se produjo un Error</string>
     <string name="error_expired_session">Su sesión ha caducado, por favor, inicie sesión de nuevo!</string>
+    <string name="added_location_success">Localización para historia añadida</string>
+    <string name="location_not_found">Ubicación no encontrada o inactiva. Por favor, active su localización!</string>
 </resources>

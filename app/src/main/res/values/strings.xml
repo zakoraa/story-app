@@ -51,4 +51,6 @@
     <string name="title_activity_maps">MapsActivity</string>
     <string name="retry">Retry</string>
     <string name="toggle_location_desc">Show location information</string>
+    <string name="added_location_success">Added location for story</string>
+    <string name="location_not_found">Location not found or disabled. Please turn on your location!</string>
 </resources>
