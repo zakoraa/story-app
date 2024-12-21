@@ -40,6 +40,7 @@
     <string name="create">Buat</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="retry">Coba lagi</string>
+    <string name="toggle_location_desc">Perlihatkan informasi lokasi</string>
 
     <string name="error_story_desc_empty">Harap isi deskripsi terlebih dahulu!</string>
     <string name="error_story_image_empty">Harap pilih gambar terlebih dahulu!</string>

@@ -12,6 +12,7 @@ import com.raflis.storyapp.data.local.database.StoryDatabase
 import com.raflis.storyapp.data.local.pref.AuthPreferences
 import com.raflis.storyapp.data.remote.entity.Story
 import com.raflis.storyapp.data.remote.response.CreateStoryResponse
+import com.raflis.storyapp.data.remote.response.GetAllStoriesResponse
 import com.raflis.storyapp.data.remote.retrofit.StoryService
 import com.raflis.storyapp.data.remote_mediator.StoryRemoteMediator
 import kotlinx.coroutines.flow.firstOrNull
@@ -50,35 +51,18 @@ class StoryRepository private constructor(
         }
     }
 
-//    fun getAllStories(): LiveData<ResultStatus<List<Story>>> = liveData {
-//        emit(ResultStatus.Loading)
-//        try {
-//            val token = authPreferences.getUserSession().firstOrNull()?.token
-//            if (token.isNullOrEmpty()) {
-//                Result.failure<Throwable>(Exception("Token not found"))
-//            }
-//            val response =
-//                storyService.getAllStories("Bearer $token")
-//            val stories = response.listStory
-//            val storyList = stories.map { story ->
-//                Story(
-//                    id = story.id,
-//                    name = story.name,
-//                    description = story.description,
-//                    photoUrl = story.photoUrl,
-//                    createdAt = story.createdAt,
-//                )
-//            }
-//            emit(ResultStatus.Success(storyList))
-//        } catch (e: Exception) {
-//            emit(ResultStatus.Error(e.message.toString()))
-//        }
-//    }
-
-    fun createStory(imageFile: File, description: String) = liveData {
+    fun createStory(
+        imageFile: File,
+        description: String,
+        lat: Double? = null,
+        lon: Double? = null
+    ) = liveData {
         emit(ResultStatus.Loading)
         val requestBody = description.toRequestBody("text/plain".toMediaType())
         val requestImageFile = imageFile.asRequestBody("image/jpeg".toMediaType())
+        val latData = lat?.toString()?.toRequestBody("text/plain".toMediaType())
+        val lonData = lon?.toString()?.toRequestBody("text/plain".toMediaType())
+
         val multipartBody = MultipartBody.Part.createFormData(
             "photo",
             imageFile.name,
@@ -90,7 +74,13 @@ class StoryRepository private constructor(
                 Result.failure<Throwable>(Exception("Token not found"))
             }
             val successResponse =
-                storyService.createStory("Bearer $token", multipartBody, requestBody)
+                storyService.createStory(
+                    "Bearer $token",
+                    multipartBody,
+                    requestBody,
+                    latData,
+                    lonData
+                )
             emit(ResultStatus.Success(successResponse))
         } catch (e: HttpException) {
             val errorBody = e.response()?.errorBody()?.string()
@@ -98,6 +88,25 @@ class StoryRepository private constructor(
             emit(ResultStatus.Error(errorResponse.message))
         }
     }
+
+    fun getStoriesWithLocation(location: Int = 1) = liveData {
+        emit(ResultStatus.Loading)
+        try {
+            val token = authPreferences.getUserSession().firstOrNull()?.token
+            if (token.isNullOrEmpty()) {
+                Result.failure<Throwable>(Exception("Token not found"))
+            }
+
+            val res = storyService.getStoriesWithLocation("Bearer $token", location)
+
+            emit(ResultStatus.Success(res))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorResponse = Gson().fromJson(errorBody, GetAllStoriesResponse::class.java)
+            emit(ResultStatus.Error(errorResponse.message))
+        }
+    }
+
 
     companion object {
         @Volatile

@@ -50,4 +50,5 @@
     <string name="error_expired_session">Your session expired, please login again!</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="retry">Retry</string>
+    <string name="toggle_location_desc">Show location information</string>
 </resources>

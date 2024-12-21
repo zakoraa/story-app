@@ -40,6 +40,7 @@
     <string name="create">Crear</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="retry">Inténtalo de nuevo</string>
+    <string name="toggle_location_desc">Mostrar información sobre la ubicación</string>
 
     <string name="error_story_desc_empty">¡Por favor, rellena primero la descripción!</string>
     <string name="error_story_image_empty">¡Por favor, selecciona una imagen primero!</string>

@@ -4,13 +4,20 @@ import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import androidx.core.content.FileProvider
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.exifinterface.media.ExifInterface
 import com.bumptech.glide.load.resource.bitmap.TransformationUtils.rotateImage
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -101,5 +108,25 @@ object FileConverterUtil {
             else -> this
         }
     }
+
+    fun vectorToBitmap(
+        @DrawableRes id: Int,
+        @ColorInt color: Int,
+        context: Context
+    ): BitmapDescriptor {
+        val vectorDrawable = ResourcesCompat.getDrawable(context.resources, id, null)
+            ?: return BitmapDescriptorFactory.defaultMarker()
+        val bitmap = Bitmap.createBitmap(
+            80,
+            100,
+            Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(bitmap)
+        vectorDrawable.setBounds(0, 0, canvas.width, canvas.height)
+        DrawableCompat.setTint(vectorDrawable, color)
+        vectorDrawable.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
+    }
+
 
 }

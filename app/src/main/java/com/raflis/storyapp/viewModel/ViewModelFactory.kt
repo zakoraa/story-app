@@ -7,6 +7,7 @@ import com.raflis.storyapp.data.di.Injection
 import com.raflis.storyapp.data.remote.repository.AuthRepository
 import com.raflis.storyapp.data.remote.repository.StoryRepository
 import com.raflis.storyapp.viewModel.auth.AuthViewModel
+import com.raflis.storyapp.viewModel.maps.MapsViewModel
 import com.raflis.storyapp.viewModel.story.StoryViewModel
 
 class ViewModelFactory private constructor(
@@ -20,6 +21,8 @@ class ViewModelFactory private constructor(
             return AuthViewModel(authRepository) as T
         } else if (modelClass.isAssignableFrom(StoryViewModel::class.java)) {
             return StoryViewModel(storyRepository) as T
+        } else if (modelClass.isAssignableFrom(MapsViewModel::class.java)) {
+            return MapsViewModel(storyRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

@@ -1,6 +1,5 @@
 package com.raflis.storyapp.data.remote.retrofit
 
-import com.raflis.storyapp.data.remote.entity.Story
 import com.raflis.storyapp.data.remote.response.CreateStoryResponse
 import com.raflis.storyapp.data.remote.response.GetAllStoriesResponse
 import okhttp3.MultipartBody
@@ -22,8 +21,9 @@ interface StoryService {
 
     @GET("stories")
     suspend fun getStoriesWithLocation(
+        @Header("Authorization") token: String,
         @Query("location") location : Int = 1,
-    ): Story
+    ): GetAllStoriesResponse
 
     @Multipart
     @POST("stories")
