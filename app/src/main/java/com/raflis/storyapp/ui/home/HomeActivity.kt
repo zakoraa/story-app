@@ -14,7 +14,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.myunlimitedquotes.adapter.LoadingStateAdapter
 import com.raflis.storyapp.R
 import com.raflis.storyapp.data.ResultStatus
 import com.raflis.storyapp.databinding.ActivityHomeBinding

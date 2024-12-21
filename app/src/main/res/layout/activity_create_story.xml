@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:scrollbars="none"
     tools:context=".ui.create_story.CreateStoryActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -103,20 +104,20 @@
             android:id="@+id/tv_active_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/btn_camera"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginVertical="10dp"
+            android:text="@string/toggle_location_desc"
             android:textSize="16sp"
-            android:text="@string/toggle_location_desc"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_camera" />
 
         <com.google.android.material.materialswitch.MaterialSwitch
             android:id="@+id/switch_active_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_active_location"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_active_location" />
 
 
         <Button

@@ -1,6 +1,5 @@
 package com.raflis.storyapp.data.remote_mediator
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState

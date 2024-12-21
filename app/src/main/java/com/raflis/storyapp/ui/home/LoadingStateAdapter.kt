@@ -1,4 +1,4 @@
-package com.dicoding.myunlimitedquotes.adapter
+package com.raflis.storyapp.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
