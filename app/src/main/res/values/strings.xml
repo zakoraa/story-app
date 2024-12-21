@@ -37,6 +37,7 @@
     <string name="camera">Camera</string>
     <string name="create_story">Create Story</string>
     <string name="create">Create</string>
+    <string name="maps">Maps</string>
 
     <string name="error_story_desc_empty">Please fill in the description first!</string>
     <string name="error_story_image_empty">Please select a picture first!</string>
@@ -47,4 +48,6 @@
     <string name="error_empty_field">%s must not be empty</string>
     <string name="error_occurs">Error Occurs</string>
     <string name="error_expired_session">Your session expired, please login again!</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="retry">Retry</string>
 </resources>

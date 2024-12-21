@@ -11,15 +11,20 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.myunlimitedquotes.adapter.LoadingStateAdapter
 import com.raflis.storyapp.R
 import com.raflis.storyapp.data.ResultStatus
 import com.raflis.storyapp.databinding.ActivityHomeBinding
 import com.raflis.storyapp.ui.auth.LoginActivity
 import com.raflis.storyapp.ui.create_story.CreateStoryActivity
+import com.raflis.storyapp.ui.maps.MapsActivity
 import com.raflis.storyapp.viewModel.ViewModelFactory
 import com.raflis.storyapp.viewModel.auth.AuthViewModel
 import com.raflis.storyapp.viewModel.story.StoryViewModel
+import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -30,6 +35,7 @@ class HomeActivity : AppCompatActivity() {
     private val authViewModel: AuthViewModel by viewModels {
         factory
     }
+    private val storyAdapter = StoryAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +43,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
         factory = ViewModelFactory.getInstance(this)
         initView()
+        initAction()
     }
 
     override fun onResume() {
@@ -80,6 +87,15 @@ class HomeActivity : AppCompatActivity() {
 
             }
         }
+        initRecyclerView()
+    }
+
+    private fun initAction() {
+        binding.apply {
+            ivMap.setOnClickListener {
+                startActivity(Intent(this@HomeActivity, MapsActivity::class.java))
+            }
+        }
     }
 
     private fun handleSettings() {
@@ -114,6 +130,24 @@ class HomeActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun initRecyclerView() {
+        binding.apply {
+            storyAdapter.addLoadStateListener { loadState ->
+                tvNoData.visibility = if (storyAdapter.itemCount == 0 &&
+                    loadState.refresh is LoadState.NotLoading
+                ) View.VISIBLE else View.GONE
+            }
+
+            recyclerView.apply {
+                layoutManager = LinearLayoutManager(this@HomeActivity)
+                adapter = storyAdapter.withLoadStateFooter(
+                    footer = LoadingStateAdapter {
+                        storyAdapter.retry()
+                    }
+                )
+            }
+        }
+    }
 
     private fun getAllStories() {
         storyViewModel.getAllStories().observe(this) { result ->
@@ -122,23 +156,20 @@ class HomeActivity : AppCompatActivity() {
                     when (result) {
                         is ResultStatus.Loading -> {
                             progressBar.visibility = View.VISIBLE
+                            tvNoData.visibility = View.GONE
                         }
 
                         is ResultStatus.Success -> {
                             progressBar.visibility = View.GONE
-                            if (result.data.isEmpty()) {
-                                tvNoData.visibility = View.VISIBLE
+
+                            lifecycleScope.launch {
+                                storyAdapter.submitData(result.data)
                             }
-                            val storyAdapter = StoryAdapter(result.data)
-                            with(binding) {
-                                recyclerView.adapter = storyAdapter
-                                recyclerView.setHasFixedSize(true)
-                                recyclerView.layoutManager =
-                                    LinearLayoutManager(this@HomeActivity)
-                            }
+
                         }
 
                         is ResultStatus.Error -> {
+                            tvNoData.visibility = View.GONE
                             progressBar.visibility = View.GONE
                             Toast.makeText(
                                 this@HomeActivity,

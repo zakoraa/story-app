@@ -3,8 +3,8 @@ package com.raflis.storyapp.data.remote.repository
 import androidx.lifecycle.liveData
 import com.google.gson.Gson
 import com.raflis.storyapp.data.ResultStatus
-import com.raflis.storyapp.data.local.database.AuthPreferences
 import com.raflis.storyapp.data.local.entity.UserLocal
+import com.raflis.storyapp.data.local.pref.AuthPreferences
 import com.raflis.storyapp.data.remote.entity.User
 import com.raflis.storyapp.data.remote.response.LoginResponse
 import com.raflis.storyapp.data.remote.retrofit.AuthService

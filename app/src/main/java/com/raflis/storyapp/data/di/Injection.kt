@@ -1,8 +1,9 @@
 package com.raflis.storyapp.data.di
 
 import android.content.Context
-import com.raflis.storyapp.data.local.database.AuthPreferences
-import com.raflis.storyapp.data.local.database.dataStore
+import com.raflis.storyapp.data.local.database.StoryDatabase
+import com.raflis.storyapp.data.local.pref.AuthPreferences
+import com.raflis.storyapp.data.local.pref.dataStore
 import com.raflis.storyapp.data.remote.repository.AuthRepository
 import com.raflis.storyapp.data.remote.repository.StoryRepository
 import com.raflis.storyapp.data.remote.retrofit.AuthConfig
@@ -18,6 +19,7 @@ object Injection {
     fun provideStoryRepository(context: Context): StoryRepository {
         val authPreferences = AuthPreferences.getInstance(context.dataStore)
         val apiService = StoryConfig.getStoryService()
-        return StoryRepository.getInstance(apiService, authPreferences)
+        val storyDatabase = StoryDatabase.getInstance(context)
+        return StoryRepository.getInstance(apiService, authPreferences, storyDatabase)
     }
 }

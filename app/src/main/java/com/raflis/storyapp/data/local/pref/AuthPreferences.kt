@@ -1,4 +1,4 @@
-package com.raflis.storyapp.data.local.database
+package com.raflis.storyapp.data.local.pref
 
 
 import android.content.Context

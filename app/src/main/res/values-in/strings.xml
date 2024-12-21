@@ -14,6 +14,7 @@
     <string name="already_have_an_account">Sudah memiliki akun? </string>
     <string name="don_t_have_an_account_yet">Belum memiliki akun? </string>
     <string name="sign_up">Daftar</string>
+    <string name="maps">Peta</string>
 
     <string name="story_image_desc">menampilkan gambar cerita</string>
     <string name="no_data">Tidak Ada Data</string>
@@ -37,6 +38,8 @@
     <string name="camera">Kamera</string>
     <string name="create_story">Buat Cerita</string>
     <string name="create">Buat</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="retry">Coba lagi</string>
 
     <string name="error_story_desc_empty">Harap isi deskripsi terlebih dahulu!</string>
     <string name="error_story_image_empty">Harap pilih gambar terlebih dahulu!</string>

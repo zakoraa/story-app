@@ -14,6 +14,7 @@
     <string name="already_have_an_account">¿Ya tienes una cuenta? </string>
     <string name="don_t_have_an_account_yet">¿Aún no tienes una cuenta? </string>
     <string name="sign_up">Registrarse</string>
+    <string name="maps">Mapas</string>
 
     <string name="story_image_desc">mostrar la imagen de la historia</string>
     <string name="no_data">Sin Datos</string>
@@ -37,6 +38,8 @@
     <string name="camera">Cámara</string>
     <string name="create_story">Crear Historia</string>
     <string name="create">Crear</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="retry">Inténtalo de nuevo</string>
 
     <string name="error_story_desc_empty">¡Por favor, rellena primero la descripción!</string>
     <string name="error_story_image_empty">¡Por favor, selecciona una imagen primero!</string>
