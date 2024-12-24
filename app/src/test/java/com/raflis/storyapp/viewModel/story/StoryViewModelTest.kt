@@ -39,6 +39,63 @@ class StoryViewModelTest {
     private lateinit var storyRepository: StoryRepository
 
     @Test
+    fun `when get Stories Should Return Correct Data Size`() = runTest {
+        val dummyStory = DataDummy.generateDummyStoryResponse()
+        val data: PagingData<Story> = StoryPagingSource.snapshot(dummyStory)
+
+        val expectData = MutableLiveData<ResultStatus<PagingData<Story>>>()
+        expectData.value = ResultStatus.Success(data)
+        Mockito.`when`(storyRepository.getAllStories()).thenReturn(expectData)
+
+        val storyViewModel = StoryViewModel(storyRepository)
+
+        val actualResult: ResultStatus<PagingData<Story>> =
+            storyViewModel.getAllStories().getOrAwaitValue()
+
+        Assert.assertTrue(actualResult is ResultStatus.Success)
+
+        val actualPagingData = (actualResult as ResultStatus.Success).data
+
+        val differ = AsyncPagingDataDiffer(
+            diffCallback = StoryAdapter.DIFF_CALLBACK,
+            updateCallback = noopListUpdateCallback,
+            workerDispatcher = Dispatchers.Main
+        )
+        differ.submitData(actualPagingData)
+
+        Assert.assertEquals(dummyStory.size, differ.snapshot().size)
+    }
+
+
+    @Test
+    fun `when get Stories Should Return First Data Correctly`() = runTest {
+        val dummyStory = DataDummy.generateDummyStoryResponse()
+        val data: PagingData<Story> = StoryPagingSource.snapshot(dummyStory)
+
+        val expectData = MutableLiveData<ResultStatus<PagingData<Story>>>()
+        expectData.value = ResultStatus.Success(data)
+        Mockito.`when`(storyRepository.getAllStories()).thenReturn(expectData)
+
+        val storyViewModel = StoryViewModel(storyRepository)
+
+        val actualResult: ResultStatus<PagingData<Story>> =
+            storyViewModel.getAllStories().getOrAwaitValue()
+
+        Assert.assertTrue(actualResult is ResultStatus.Success)
+
+        val actualPagingData = (actualResult as ResultStatus.Success).data
+
+        val differ = AsyncPagingDataDiffer(
+            diffCallback = StoryAdapter.DIFF_CALLBACK,
+            updateCallback = noopListUpdateCallback,
+            workerDispatcher = Dispatchers.Main
+        )
+        differ.submitData(actualPagingData)
+
+        Assert.assertEquals(dummyStory[0], differ.snapshot()[0])
+    }
+
+    @Test
     fun `when get Stories Should Not Null and Return Data`() = runTest {
         val dummyStory = DataDummy.generateDummyStoryResponse()
         val data: PagingData<Story> = StoryPagingSource.snapshot(dummyStory)
@@ -64,8 +121,6 @@ class StoryViewModelTest {
         differ.submitData(actualPagingData)
 
         Assert.assertNotNull(differ.snapshot())
-        Assert.assertEquals(dummyStory.size, differ.snapshot().size)
-        Assert.assertEquals(dummyStory[0], differ.snapshot()[0])
     }
 
     @Test
